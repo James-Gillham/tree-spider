@@ -20,7 +20,7 @@ def tree_spider(max_pages, product):
             title = link.string
             href = 'https://www.gumtree.com.au' + link.parent.get('href')
 
-            print(title.lstrip().rstrip())
+            print("-----------------------------------------\n" + title.lstrip().rstrip())
 
             get_ad_data(href)
 
@@ -34,10 +34,12 @@ def get_ad_data(ad_url):
     found_price = soup.find('span', {'class': 'j-original-price'})
 
     if found_price is None:
-        print("Could not fetch price")
+        print("Could not fetch price\n" + "-----------------------------------------\n")
     else:
         for ad_price in found_price:
             print(str(ad_price.string).lstrip())
+    print("-----------------------------------------\n")
+
 
 def check_entries(search, pages):
     #Poorly planned query validation
