@@ -1,4 +1,4 @@
 # tree-spider
-Simple python web crawler for gather information about Gumtree.com.au adverts.
+Simple python web crawler for gathering information about Gumtree.com.au adverts.
 
 Just run crawler.py.
