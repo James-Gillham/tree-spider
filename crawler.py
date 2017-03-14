@@ -1,8 +1,11 @@
 import requests
+import url_manager
 from bs4 import BeautifulSoup
 
-def creepy_crawler(max_pages, product):
+def tree_spider(max_pages, product):
     page = 1
+
+    product = url_manager.urlify(product)
 
     while page <= max_pages:
         #Grab Page Source
@@ -15,11 +18,25 @@ def creepy_crawler(max_pages, product):
 
         for link in soup.findAll('span', {'itemprop': 'name'}):
             title = link.string
+            href = 'https://www.gumtree.com.au' + link.parent.get('href')
+
+            print(title.lstrip())
+            get_ad_data(href)
 
         page += 1
 
 def get_ad_data(ad_url):
-    
+    source = requests.get(ad_url)
+    plain_text = source.text
+    soup = BeautifulSoup(plain_text, 'html.parser')
+
+    found_price = soup.find('span', {'class': 'j-original-price'})
+
+    if found_price is None:
+        print("Could not fetch price")
+    else:
+        for ad_price in found_price:
+            print(str(ad_price.string).lstrip())
 
 
-creepy_crawler(1, 'bananas')
+tree_spider(1, 'e30')
