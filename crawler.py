@@ -38,5 +38,11 @@ def get_ad_data(ad_url):
         for ad_price in found_price:
             print(str(ad_price.string).lstrip())
 
+def main():
+    search = input("What would you like to search for on Gumtree?\n")
+    pages = input("How many pages would you like to crawl?\n")
 
-tree_spider(1, 'e30')
+    tree_spider(int(pages), search)
+
+if __name__ == '__main__':
+    main()
