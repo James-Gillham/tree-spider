@@ -1,5 +1,5 @@
 import requests
-import url_manager
+from modules import url_manager
 from bs4 import BeautifulSoup
 
 def tree_spider(max_pages, product):
